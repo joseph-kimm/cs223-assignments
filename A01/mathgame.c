@@ -28,8 +28,8 @@ int main() {
     printf("\n");
 
     // generating two random integers between 1 and 9 
-    int num1 = rand() % 9 + 1;
-    int num2 = rand() % 9 + 1;
+    int num1 = (rand() % 9) + 1;
+    int num2 = (rand() % 9) + 1;
 
     // asking user and then recieving answer
     printf("%d + %d = ? ", num1, num2);
