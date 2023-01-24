@@ -23,7 +23,7 @@ int main() {
   int correct = 0;
   int response = 0;
 
-  // for loop ask eaching question
+  // for loop ask each question
   for (int i=0; i<rounds; i++) {
     printf("\n");
 
