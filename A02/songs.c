@@ -68,9 +68,9 @@ int main() {
       char title_r[32] = "";
       scanf(" %[^\n]%*c", title_r);
       strcpy(playlist[response].title, title_r);
+    }
 
     // case 3: changes the duration of the song
-    }
     else if (strcmp(attr, "duration") == 0) {
 
       // takes the minutes of the song
@@ -103,7 +103,7 @@ int main() {
     // shows all the songs including the changed one
     playlistInfo(playlist, size);
   }
-
+  return 0;
 }
 
 /**
@@ -129,7 +129,7 @@ void playlistInfo(struct song playlist[], int size) {
     }
 
     // prints all the information of a song
-    printf("%i)  %-20s artist: %-20s duration: %i:%i  danceability: %.2f\n", i, playlist[i].title,
+    printf("%i)  %-20s artist: %-20s duration: %i:%02d  danceability: %.2f\n", i, playlist[i].title,
       playlist[i].artist, minutes, seconds, playlist[i].dance);
   }
   printf("\n=======================\n");
