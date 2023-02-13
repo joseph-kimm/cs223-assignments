@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-// struct for saving all the informaiton of a song
+// struct for saving all the information of a song
 struct song {
   char title[128];
   char artist[128];
