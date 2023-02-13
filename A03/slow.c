@@ -50,6 +50,7 @@ int main() {
   // forming the ent phrase by putting in letter and the dots
   for (int j = 0; j < t_len; j++) {
     ent[j * (p_len + 1)] = buff[j];
+    ent[j * (p_len + 1) + 1] = '\0';
     strcat(ent, dots);
   }
   ent[t_len * (p_len + 1)] = '\0';
