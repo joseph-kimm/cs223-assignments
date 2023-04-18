@@ -10,13 +10,69 @@
 #define BUFFER 5
 #define LOOP 10
 
+// struct to store information about requested memory
 struct chunk {
   int size;
   int used;
   struct chunk *next;
 };
 
+/**
+ * used to calculate size and status of requested memory blocks
+ *
+ * @param freelist: header of freed memory linked list
+ * @param buffer[]: array of pointers that lead to NULL or used memory
+ * @param len: size of buffer[]
+ * return: nothing
+ *
+*/
 void memstats(struct chunk* freelist, void* buffer[], int len) {
+
+  int free_block = 0; // number of freed memory blocks
+  int used_block = 0; // number of used memory blocks
+
+  int free_memory = 0; // memory freed
+  int used_memory = 0;  // memory in buffer
+  int underused_memory = 0;// memory in buffer but not used
+
+  struct chunk* curr = freelist;
+
+  // looping through each of node of the linked list
+  while (curr != NULL) {
+
+    // updating the memory and block count
+    free_block++;
+    free_memory += curr->size;
+
+    curr = curr->next;
+  }
+
+  // looping through each pointer in array
+  for (int i = 0; i < len; i++) {
+
+    // checking if pointer points to used memory
+    if (buffer[i] != NULL) {
+
+      // used to get information about the current memory block
+      struct chunk* curr = (struct chunk*) ((struct chunk*) buffer[i] - 1);
+
+      // updating memory and block count
+      used_block ++;
+      used_memory += curr->size;
+      underused_memory += curr->size - curr->used;
+    } 
+  }
+
+  // printing all the information about memory blocks and memory
+  printf("Total blocks: %i Free blocks: %i Used blocks: %i\n", free_block + used_block, 
+    free_block, used_block);
+
+  printf("Total memory allocated: %i Free memory: %i Used memory: %i\n", free_memory + used_memory, 
+    free_memory, used_memory);
+
+  printf("Underutlized memory: %.2f\n", (float) underused_memory / used_memory);
+
+  return;
 }
 
 int main ( int argc, char* argv[]) {
